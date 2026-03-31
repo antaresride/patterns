@@ -1,5 +1,5 @@
 {
-  "name": "Payments Local Build",
+  "name": "Payment Patterns",
   "build": {
     "dockerfile": "../Dockerfile",
     "context": "..",
