@@ -1,0 +1,25 @@
+{
+  "name": "Payments Local Build",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "..",
+    "target": "dev",
+  },
+  "remoteUser": "root",
+  "mounts": [
+    "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.gitignore,target=/root/.gitignore,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
+  ],
+  "customizations": {
+    "zed": {
+      "settings": {
+        "languages": {
+          "Go": {
+            "format_on_save": "on",
+          },
+        },
+      },
+    },
+  },
+}
