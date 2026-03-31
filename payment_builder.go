@@ -58,6 +58,6 @@ func main() {
 		WithAmmount(13.00).
 		WithAuthorization(Authorization{cryptography: "edca"}).
 		Build()
-	fmt.Println("%+v\n", payment)
+	fmt.Println(payment)
 
 }
