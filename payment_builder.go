@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Authorization struct {
 	cryptography string
@@ -37,7 +39,7 @@ func (pb *PaymentBuilder) WithCustomer(c string) *PaymentBuilder {
 	return pb
 }
 
-func (pb *PaymentBuilder) WithAmmount(a float64) *PaymentBuilder {
+func (pb *PaymentBuilder) WithAmount(a float64) *PaymentBuilder {
 	pb.pay.Amount = a
 	return pb
 }
@@ -51,13 +53,21 @@ func (pb *PaymentBuilder) Build() Payment {
 	return pb.pay
 }
 
+func (l *Payment) Pay() {
+	fmt.Println("I am the legacy method")
+}
 func main() {
 	payment := NewPaymentBuilder().
 		WithMerchant("Tesco").
 		WithCustomer("Alice").
-		WithAmmount(13.00).
-		WithAuthorization(Authorization{cryptography: "edca"}).
+		WithAmount(13.00).
+		WithAuthorization(Authorization{cryptography: "ecdsa"}).
 		Build()
-	fmt.Println(payment)
+	fmt.Printf("%+v\n", payment)
+
+	legacyPayment := &payment
+	adapterPayment := &PaymentAdapter{Payment: legacyPayment}
+	Pay(adapterPayment)
+	payment.Pay()
 
 }
