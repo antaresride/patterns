@@ -70,4 +70,10 @@ func main() {
 	Pay(adapterPayment)
 	payment.Pay()
 
+	GetInstance("Louie", "Maria", 10.00)
+
+	GetInstance("Fernand", "Luca", 30.00)
+
+	GetInstance("Sheila", "Jorge", 20.00)
+
 }
