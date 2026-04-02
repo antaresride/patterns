@@ -1,11 +1,14 @@
 package main
 
 import (
+	"strings"
 	"testing"
 )
 
+//Todo test payment for every customer
+
 func TestPayee(t *testing.T) {
-	repeated := Repeat("a")
+	repeated := Payee("a")
 	expected := "aaaa"
 	if repeated != expected {
 		t.Errorf("expected %q but got %q", expected, repeated)
@@ -13,10 +16,10 @@ func TestPayee(t *testing.T) {
 
 }
 
-func Repeat(character string) string {
-	var repeated string
-	for i := 0; i < 4; i++ {
-		repeated += character
+func Payee(character string) string {
+	var repeated strings.Builder
+	for range 4 {
+		repeated.WriteString(character)
 	}
-	return repeated
+	return repeated.String()
 }
