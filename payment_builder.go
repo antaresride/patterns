@@ -8,7 +8,7 @@ type Authorization struct {
 	cryptography string
 }
 
-// the complex object
+// The complex object
 type Payment struct {
 	Merchant      string
 	Customer      string
@@ -57,6 +57,7 @@ func (l *Payment) Pay() {
 	fmt.Println("I am the legacy method")
 }
 func main() {
+	// Builder
 	payment := NewPaymentBuilder().
 		WithMerchant("Tesco").
 		WithCustomer("Alice").
@@ -65,11 +66,13 @@ func main() {
 		Build()
 	fmt.Printf("%+v\n", payment)
 
+	// Adapter
 	legacyPayment := &payment
 	adapterPayment := &PaymentAdapter{Payment: legacyPayment}
 	Pay(adapterPayment)
 	payment.Pay()
 
+	// Singleton
 	GetInstance("Louie", "Maria", 10.00)
 
 	GetInstance("Fernand", "Luca", 30.00)
